@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Découverte de JavaScript</title>
+  <meta charset="UTF-8">
+  <title>Choisis ton script</title>
 </head>
 <body>
-  <h1>Bienvenue dans ton premier projet JavaScript</h1>
+  <h1>Tester mes scripts JavaScript</h1>
 
-  <!-- On lie le fichier JavaScript ici -->
-  <script src="script1.js"></script>
+  <label for="scriptSelect">Choisis un script :</label>
+    <select id="scriptSelect">
+    <option value="">-- Sélectionne --</option>
+    <option value="script1.js">Script 1</option>
+    <option value="script2.js">Script 2</option>
+    <option value="script3.js">Script 3</option>
+    <option value="script4.js">Script 4</option>
+    <option value="script5.js">Script 5</option>
+    <option value="script6.js">Script 6</option>
+    <option value="script7.js">Script 7</option>
+  </select>
+
+  <script>
+    const select = document.getElementById('scriptSelect');
+
+    select.addEventListener('change', () => {
+      const scriptName = select.value;
+      if (scriptName) {
+        
+        const previous = document.getElementById('dynamicScript');
+        if (previous) previous.remove();
+
+        const script = document.createElement('script');
+        script.id = 'dynamicScript';
+        script.src = scriptName;
+        document.body.appendChild(script);
+        console.log(`Chargement de ${scriptName}...`);
+      }
+    });
+  </script>
 </body>
 </html>
